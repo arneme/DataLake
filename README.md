@@ -1,7 +1,5 @@
-# DataLake
-This README file includes a summary of the project, how to run the Python scripts, and an explanation of the files in the repository.
-
 # Data Lake project
+This README file includes a summary of the project, how to run the Python scripts, and an explanation of the files in the repository.
 
 ## Table of Contents
 

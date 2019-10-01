@@ -136,7 +136,7 @@ def process_log_data(spark, input_data, output_data):
 
     songplays_table.write.mode("overwrite") \
                         .partitionBy("song_id", "artist_id") \
-                        .parquet('s3://data-lake-sparkify/song_table')
+                        .parquet('s3://data-lake-sparkify/songplay_table')
 
 
 def main():

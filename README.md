@@ -24,11 +24,11 @@ To login to the master node of your Spark cluster (this is where you will run th
 Login to your AWS account and select the EC2 service. Select *Key Pairs* from *Network and Security* in the right hand side menu. Click on the  *Create Key Pair* button and give it an appropriate name (the private part of the key will be automatically downloaded to your local computer. Store it in a safe place).
 
 #### Setup Spark Cluster
-The easiest way to setup a Spark cluster is to use the (mostly) automated Elastic Map Reduce (EMR) service. The steps we have used is as follows:
+The easiest way to setup a Spark cluster is to use the (mostly) automated Elastic Map Reduce (EMR) service. The steps used in this project are as follows:
 
 1. Login to your AWS account and select the EMR service
 2. Click on the *Create Cluster* button
-3. Give the cluster a name and maker sure that *Launch Mode*: *Cluster* is selected
+3. Give the cluster a name and make sure that *Launch Mode*: *Cluster* is selected
 4. Select hardware configuration *m5.xlarge* and software configuration release *emr-5.27.0* and application *Spark*.
 5. Select the number of nodes in your cluster
 5. In the *Security and Access* configuration make sure to select the keypair you crerated in the previous section
@@ -36,12 +36,12 @@ The easiest way to setup a Spark cluster is to use the (mostly) automated Elasti
 
 You can of course use other types of EC2 instances for your cluster if you wish. For this project it is sufficient to have one node (since the amount of data is not really large) but you can use more if you wish :-)
 
-After a while your Spark cluster should be up and running and you are ready to run your pySpark PYTHON script (or notebook) using this cluster.
+After a while the Spark cluster should be up and running and ready to run a pySpark PYTHON script (or notebook).
 
 ### Run etl.py standalone
-To transfer the python script to your Spark master node, first transfer it to a pre created bucket (data-lake-sparkify) and then use _aws s3 cp s3://data-lake-sparkify/etl.py ._ to copy it to the EMR master node (after logging in to the master node using ssh).
+To transfer the python script to your Spark master node, first transfer it to S3. I have created a bucket (data-lake-sparkify) that I have used for this purpose (and for storage of parquet files) and then used _aws s3 cp s3://data-lake-sparkify/etl.py ._ to copy it to the EMR master node (after logging in to the master node using ssh).
 
-Login to your cluster using ssh naming the private key using the -i option (change the path to where you have stored the pem file). Note: You will have to add a rule to the firewall for the master node that allows inbound traffic from your IP address first (click on the *Security groups for* master in the cluster overview to do this).
+Login to your cluster using ssh (naming the private key using the -i option, change the path to where you have stored the pem file). Note: You will have to add a rule to the firewall for the master node that allows inbound traffic from your IP address first (click on the *Security groups for* master in the cluster overview to do this).
 
 
 _ssh -i ~/.ssh/spark-cluster.pem hadoop@ec2-35-160-245-xxx.us-west-2.compute.amazonaws.com_
